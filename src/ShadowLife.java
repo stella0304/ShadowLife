@@ -1,5 +1,8 @@
 import bagel.*;
-import java.util.*;
+
+import java.nio.*;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.io.FileReader;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -7,24 +10,40 @@ import java.io.IOException;
 
 public class ShadowLife extends AbstractGame{
 
-    private List<Actor> actors;
+    private ArrayList<Actor> movingActors;
+    private HashMap<String, Actor> stationaryActors;
     private Image background;
 
     private final int TILE = 64;
-    private final int TICK = 500;
-    private String fileLocation;
+    private int oneTick;
     private int numTicks = 0;
+    private int maxNumTicks;
     private int time = (int) System.currentTimeMillis();
 
-    public ShadowLife() {
+    public ShadowLife(int oneTick, int maxNumTicks, String fileLocation) {
         super(960, 704, "ShadowLife");
+        this.oneTick = oneTick;
+        this.maxNumTicks = maxNumTicks;
         background = new Image("res/images/background.png");
-        readCsv(FILE_LOCATION);
-        //time = (int) System.currentTimeMillis();
+        readCsv(fileLocation);
     }
 
     public static void main(String[] args) {
-        ShadowLife game = new ShadowLife();
+        // check if the inputs are valid
+        if (args.length!=3) {
+            System.exit(-1);
+        }
+
+        int tickLen, maxTicks;
+        try {
+            tickLen = Integer.parseInt(args[0]);
+            maxTicks = Integer.parseInt(args[1]);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        // run game
+        ShadowLife game = new ShadowLife(tickLen, maxTicks, args[2]);
         game.run();
     }
 

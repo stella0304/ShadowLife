@@ -13,8 +13,20 @@ public abstract class Carrier extends Actor {
         direction += angle;
     }
 
-    private void changeDirection(String direction) {
+    public void setDirection(double direction) {
+        this.direction = direction;
+    }
 
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public boolean isCarrying() {
+        return isCarrying;
+    }
+
+    public double getDirection() {
+        return direction;
     }
 
 
