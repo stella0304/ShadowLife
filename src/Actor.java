@@ -39,30 +39,6 @@ public abstract class Actor {
         return actorType;
     }
 
-    @Override
-    public String toString() {
-        return "Actor{" +
-                "xCoord=" + xCoord +
-                ", yCoord=" + yCoord +
-                ", image=" + image +
-                '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Actor actor = (Actor) o;
-        return xCoord == actor.xCoord &&
-                yCoord == actor.yCoord &&
-                image.equals(actor.image);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(xCoord, yCoord, image);
-    }
-
     public void displayImage() {
         image.draw(xCoord, yCoord);
     }

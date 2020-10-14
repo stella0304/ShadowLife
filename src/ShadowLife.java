@@ -11,14 +11,13 @@ import java.io.IOException;
 public class ShadowLife extends AbstractGame{
 
     private ArrayList<Actor> movingActors;
-    private HashMap<String, Actor> stationaryActors;
+    private HashMap<String, Actor> actors;
     private Image background;
 
-    private final int TILE = 64;
     private int oneTick;
     private int numTicks = 0;
     private int maxNumTicks;
-    private int time = (int) System.currentTimeMillis();
+    private int prevTick = (int) System.currentTimeMillis();
 
     public ShadowLife(int oneTick, int maxNumTicks, String fileLocation) {
         super(960, 704, "ShadowLife");
@@ -38,8 +37,12 @@ public class ShadowLife extends AbstractGame{
         try {
             tickLen = Integer.parseInt(args[0]);
             maxTicks = Integer.parseInt(args[1]);
+            if (tickLen < 0 || maxTicks < 0) {
+                throw new Exception("tick rate or max ticks are negative");
+            }
         } catch (Exception e) {
             e.printStackTrace();
+            // System.exit(-1);
         }
 
         // run game
@@ -55,48 +58,21 @@ public class ShadowLife extends AbstractGame{
             a.displayImage();
         }
 
-        // check for tick & 5 tick
-        boolean changeDirection = false;
+        // check for tick
         int currTime = (int) System.currentTimeMillis();
-        if (currTime - time >= 500) {
+        if (currTime - prevTick >= 500) {
 
-            time = currTime;
+            prevTick = currTime;
             numTicks++;
 
-            // 5th tick
-            if (numTicks == 5) {
-                changeDirection = true;
-                numTicks = 0;
-            }
+            // move movingActors
 
-            // move gatherer
-            for (Actor a : actors) {
-                if (a.getClass().getSimpleName().equals("Gatherer")) {
-                    int newxCoord, newyCoord;
-                    switch (((Gatherer) a).getDirection()) {
-                        case "up":
-                            newxCoord = a.getxCoord() - TILE;
-                            a.setxCoord(newxCoord);
-                            break;
-                        case "down":
-                            newxCoord = a.getxCoord() + TILE;
-                            a.setxCoord(newxCoord);
-                            break;
-                        case "left":
-                            newyCoord = a.getyCoord() - TILE;
-                            a.setyCoord(newyCoord);
-                            break;
-                        case "right":
-                            newyCoord = a.getyCoord() + TILE;
-                            a.setyCoord(newyCoord);
-                            break;
-                    }
-                    // change direction at 5th tick
-                    if (changeDirection) {
-                        ((Gatherer) a).changeDirection();
-                    }
-                }
-            }
+        }
+
+        // check for naxNumTick
+        if (numTicks >= maxNumTicks) {
+            System.out.println("Time Out");
+            System.exit(-1);
         }
     }
 
@@ -104,7 +80,8 @@ public class ShadowLife extends AbstractGame{
         // reads in CSV file and store them in actors
         // csv: type, x-coord, y-coord
 
-        actors = new ArrayList<>();
+        movingActors = new ArrayList<>();
+        actors = new HashMap<>();
 
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
             //read cvs
@@ -116,11 +93,12 @@ public class ShadowLife extends AbstractGame{
                     oneActor = new Tree(Integer.parseInt(splitText[1]), Integer.parseInt(splitText[2]));
                 } else if (splitText[0].equals("Gatherer")) {
                     oneActor = new Gatherer(Integer.parseInt(splitText[1]), Integer.parseInt(splitText[2]));
+                    actors.add(oneActor);
                 } else {
                     System.out.println("invalid actor type");
                     return;
                 }
-                actors.add(oneActor);
+
 
             }
         } catch (Exception e) {
