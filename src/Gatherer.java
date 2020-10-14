@@ -16,7 +16,7 @@ public class Gatherer extends Carrier{
 
     public void atMitosisPool(ArrayList<Actor> carriersToAdd, ArrayList<Actor> carriersToDelete) {
 
-        // make and move new thieves
+        // make and move new gatherers
         int clockwise90 = -90, anticlockwise90 = 90;
 
         Gatherer newGatherer1 = new Gatherer(getxCoord(), getyCoord(), getDirection() + anticlockwise90);

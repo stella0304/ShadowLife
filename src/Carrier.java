@@ -72,9 +72,22 @@ public abstract class Carrier extends Actor {
         if (!isCarrying) {
             if (oneTree.takeFruit()) {
                 isCarrying = true;
+
+                // change direction 180 degrees
                 int angleChange = 180;
                 changeAngle(angleChange);
             }
+        }
+    }
+
+    public void atGoldenTree() {
+        if (!isCarrying) {
+            // carry without having to decrease fruit amount
+            isCarrying = true;
+
+            // change direction 180 degrees
+            int angleChange = 180;
+            changeAngle(angleChange);
         }
     }
 

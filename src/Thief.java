@@ -68,6 +68,10 @@ public class Thief extends Carrier {
         isConsuming = true;
     }
 
+    public void onGatherer() {
+
+    }
+
     private void rotate90Clockwise() {
         // rotate 90 degrees clockwise
         int angleChange = -90;

@@ -10,8 +10,14 @@ import java.io.IOException;
 
 public class ShadowLife extends AbstractGame{
 
-    private ArrayList<Actor> movingActors;
-    private HashMap<String, Actor> actors;
+    private final static int WIDTH = 960;
+    private final static int HEIGHT = 704
+
+    private ArrayList<Gatherer> gatherers;
+    private ArrayList<Thief> thieves;
+    private ArrayList<FruitStock> fruitstocks;
+    private HashMap<String, Gatherer> gatherersMap;
+    private HashMap<String, Actor> nonMovingActors;
     private Image background;
 
     private int oneTick;
@@ -20,7 +26,7 @@ public class ShadowLife extends AbstractGame{
     private int prevTick = (int) System.currentTimeMillis();
 
     public ShadowLife(int oneTick, int maxNumTicks, String fileLocation) {
-        super(960, 704, "ShadowLife");
+        super(WIDTH, HEIGHT, "ShadowLife");
         this.oneTick = oneTick;
         this.maxNumTicks = maxNumTicks;
         background = new Image("res/images/background.png");
@@ -42,7 +48,7 @@ public class ShadowLife extends AbstractGame{
             }
         } catch (Exception e) {
             e.printStackTrace();
-            // System.exit(-1);
+            System.exit(-1);
         }
 
         // run game
@@ -62,11 +68,19 @@ public class ShadowLife extends AbstractGame{
         int currTime = (int) System.currentTimeMillis();
         if (currTime - prevTick >= 500) {
 
+            boolean stillActive = false;
             prevTick = currTime;
             numTicks++;
 
-            // move movingActors
+            // move gatherers and draw their images
 
+            // move gatherers and draw their images
+
+            // draw all non moving actors' images
+
+            if (!stillActive) {
+                endGame();
+            }
         }
 
         // check for naxNumTick
@@ -77,32 +91,130 @@ public class ShadowLife extends AbstractGame{
     }
 
     private void readCsv(String file) {
-        // reads in CSV file and store them in actors
+        // reads in CSV file and store them in corresponding data structures
         // csv: type, x-coord, y-coord
 
-        movingActors = new ArrayList<>();
-        actors = new HashMap<>();
+        // initialise all data structures
+        gatherers = new ArrayList<>();
+        thieves = new ArrayList<>();
+        fruitstocks = new ArrayList<>();
+        gatherersMap = new HashMap<>();
+        nonMovingActors = new HashMap<>();
 
+        // read csv and store info
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
             //read cvs
             String textRead;
+            int lineNum = 0;
             while ((textRead = br.readLine()) != null) {
+                lineNum++;
                 String[] splitText = textRead.split(",");
+
                 Actor oneActor;
-                if (splitText[0].equals("Tree")) {
-                    oneActor = new Tree(Integer.parseInt(splitText[1]), Integer.parseInt(splitText[2]));
-                } else if (splitText[0].equals("Gatherer")) {
-                    oneActor = new Gatherer(Integer.parseInt(splitText[1]), Integer.parseInt(splitText[2]));
-                    actors.add(oneActor);
-                } else {
-                    System.out.println("invalid actor type");
-                    return;
+                String hashKey = splitText[1] + "," + splitText[2];
+
+                // check if one line is valid
+                checkValidLine(splitText, file, lineNum);
+
+                switch (splitText[0]) {
+                    case "Tree":
+                        oneActor = new Tree(Integer.parseInt(splitText[1]), Integer.parseInt(splitText[2]));
+                        nonMovingActors.put(hashKey, oneActor);
+                        break;
+                    case "GoldenTree":
+                        oneActor = new StationaryActor(Integer.parseInt(splitText[1]),
+                                Integer.parseInt(splitText[2]), "GoldenTree");
+                        nonMovingActors.put(hashKey, oneActor);
+                        break;
+                    case "Stockpile":
+                        oneActor = new FruitStock(Integer.parseInt(splitText[1]),
+                                Integer.parseInt(splitText[2]), "Stockpile");
+                        fruitstocks.add((FruitStock) oneActor);
+                        nonMovingActors.put(hashKey, oneActor);
+                        break;
+                    case "Hoard":
+                        oneActor = new FruitStock(Integer.parseInt(splitText[1]),
+                                Integer.parseInt(splitText[2]), "Hoard");
+                        fruitstocks.add((FruitStock) oneActor);
+                        nonMovingActors.put(hashKey, oneActor);
+                        break;
+                    case "Pad":
+                        oneActor = new StationaryActor(Integer.parseInt(splitText[1]),
+                                Integer.parseInt(splitText[2]), "Pad");
+                        nonMovingActors.put(hashKey, oneActor);
+                        break;
+                    case "Fence":
+                        oneActor = new StationaryActor(Integer.parseInt(splitText[1]),
+                                Integer.parseInt(splitText[2]), "Fence");
+                        nonMovingActors.put(hashKey, oneActor);
+                        break;
+                    case "SignUp":
+                        oneActor = new StationaryActor(Integer.parseInt(splitText[1]),
+                                Integer.parseInt(splitText[2]), "SignUp");
+                        nonMovingActors.put(hashKey, oneActor);
+                        break;
+                    case "SignDown":
+                        oneActor = new StationaryActor(Integer.parseInt(splitText[1]),
+                                Integer.parseInt(splitText[2]), "SignDown");
+                        nonMovingActors.put(hashKey, oneActor);
+                        break;
+                    case "SignLeft":
+                        oneActor = new StationaryActor(Integer.parseInt(splitText[1]),
+                                Integer.parseInt(splitText[2]), "SignLeft");
+                        nonMovingActors.put(hashKey, oneActor);
+                        break;
+                    case "SignRight":
+                        oneActor = new StationaryActor(Integer.parseInt(splitText[1]),
+                                Integer.parseInt(splitText[2]), "SignRight");
+                        nonMovingActors.put(hashKey, oneActor);
+                        break;
+                    case "MitosisPool":
+                        oneActor = new StationaryActor(Integer.parseInt(splitText[1]),
+                                Integer.parseInt(splitText[2]), "MitosisPool");
+                        nonMovingActors.put(hashKey, oneActor);
+                        break;
+                    case "Gatherer":
+                        oneActor = new Gatherer(Integer.parseInt(splitText[1]), Integer.parseInt(splitText[2]));
+                        gatherers.add((Gatherer) oneActor);
+                        gatherersMap.put(hashKey, (Gatherer) oneActor);
+                        break;
+                    case "Thief":
+                        oneActor = new Thief(Integer.parseInt(splitText[1]), Integer.parseInt(splitText[2]));
+                        thieves.add((Thief) oneActor);
+                        break;
+                    default:
+                        System.out.println("error: in file \"" + file + "\" at line" + lineNum);
+                        System.exit(-1);
                 }
-
-
             }
         } catch (Exception e) {
             e.printStackTrace();
+            System.out.println("error: file \"" + file + "\" not found");
+            System.exit(-1);
         }
+    }
+
+    private void checkValidLine(String[] splitText, String file, int lineNum) {
+        int x, y;
+        try {
+            x = Integer.parseInt(splitText[1]);
+            y = Integer.parseInt(splitText[2]);
+        } catch (Exception e) {
+            System.out.println("error: in file \"" + file + "\" at line" + lineNum);
+            System.exit(-1);
+        }
+
+        if (splitText.length>3 || x<0 || y<0 || x>WIDTH || y>HEIGHT) {
+            System.out.println("error: in file \"" + file + "\" at line" + lineNum);
+            System.exit(-1);
+        }
+    }
+
+    private void endGame() {
+        System.out.println(numTicks + "Ticks");
+        for (FruitStock f : fruitstocks) {
+            System.out.println(f.getNumFruit());
+        }
+        System.exit(0);
     }
 }
