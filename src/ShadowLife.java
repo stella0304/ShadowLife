@@ -12,7 +12,7 @@ public class ShadowLife extends AbstractGame{
 
     private final int TILE = 64;
     private final int TICK = 500;
-    private final String FILE_LOCATION = "res/worlds/test.csv";
+    private String fileLocation;
     private int numTicks = 0;
     private int time = (int) System.currentTimeMillis();
 
@@ -33,7 +33,7 @@ public class ShadowLife extends AbstractGame{
         // display everything
         background.draw(Window.getWidth() / 2.0, Window.getHeight() / 2.0);
         for (Actor a : actors) {
-            a.getImage().draw(a.getxCoord(), a.getyCoord());
+            a.displayImage();
         }
 
         // check for tick & 5 tick

@@ -6,10 +6,13 @@ public abstract class Actor {
     private int xCoord;
     private int yCoord;
     private Image image;
+    private String actorType;
 
-    public Actor(int xCoord, int yCoord) {
+    public Actor(int xCoord, int yCoord, String imgLocation, String actorType) {
         this.xCoord = xCoord;
         this.yCoord = yCoord;
+        this.image = new Image(imgLocation);
+        this.actorType = actorType;
     }
 
     public void setxCoord(int xCoord) {
@@ -21,12 +24,7 @@ public abstract class Actor {
     }
 
     public void setImage(String location) {
-        Image oneImage = new Image(location);
-        this.image = oneImage;
-    }
-
-    public Image getImage() {
-        return image;
+        this.image = new Image(location);
     }
 
     public int getxCoord() {
@@ -35,6 +33,10 @@ public abstract class Actor {
 
     public int getyCoord() {
         return yCoord;
+    }
+
+    public String getActorType() {
+        return actorType;
     }
 
     @Override
@@ -59,5 +61,9 @@ public abstract class Actor {
     @Override
     public int hashCode() {
         return Objects.hash(xCoord, yCoord, image);
+    }
+
+    public void displayImage() {
+        image.draw(xCoord, yCoord);
     }
 }
