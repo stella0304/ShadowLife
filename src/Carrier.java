@@ -44,8 +44,19 @@ public abstract class Carrier extends Actor {
         this.direction = direction;
     }
 
-    protected void changeAngle(int angle) {
-        direction += angle;
+    protected void rotate90Clockwise() {
+        // rotate 90 degrees clockwise
+        direction -= 90;
+    }
+
+    protected void rotate90AntiClockwise() {
+        // rotate 90 degrees clockwise
+        direction += 90;
+    }
+
+    protected void rotate180() {
+        // rotate 180 degrees
+        direction += 180;
     }
 
     public void atFence() {
@@ -73,9 +84,7 @@ public abstract class Carrier extends Actor {
             if (oneTree.takeFruit()) {
                 isCarrying = true;
 
-                // change direction 180 degrees
-                int angleChange = 180;
-                changeAngle(angleChange);
+                rotate180();
             }
         }
     }
@@ -85,9 +94,42 @@ public abstract class Carrier extends Actor {
             // carry without having to decrease fruit amount
             isCarrying = true;
 
-            // change direction 180 degrees
-            int angleChange = 180;
-            changeAngle(angleChange);
+            rotate180();
+        }
+    }
+
+    protected void atActor(Actor oneActor, ArrayList<Actor> actorsToAdd, ArrayList<Actor> actorsToDelete) {
+        switch (oneActor.getActorType()) {
+            case "Tree":
+                this.atTree((Tree) oneActor);
+                break;
+            case "GoldenTree":
+                this.atGoldenTree();
+                break;
+            case "Stockpile":
+                this.atStockPile((FruitStock) oneActor);
+                break;
+            case "Hoard":
+                this.atHoard((FruitStock) oneActor);
+                break;
+            case "Fence":
+                this.atFence();
+                break;
+            case "SignUp":
+                this.atSign("UP");
+                break;
+            case "SignDown":
+                this.atSign("DOWN");
+                break;
+            case "SignLeft":
+                this.atSign("LEFT");
+                break;
+            case "SignRight":
+                this.atSign("RIGHT");
+                break;
+            case "MitosisPool":
+                this.atMitosisPool(actorsToAdd, actorsToDelete);
+                break;
         }
     }
 
@@ -95,5 +137,6 @@ public abstract class Carrier extends Actor {
     public abstract void atMitosisPool(ArrayList<Actor> actorsToAdd, ArrayList<Actor> actorsToDelete);
     public abstract void atHoard(FruitStock oneHoard);
     public abstract void atStockPile(FruitStock oneStockPile);
+    public abstract void checkForNonMoving(HashMap<String, Actor> nonMovingActors, ArrayList<Actor> actorsToAdd, ArrayList<Actor> actorsToDelete);
 
 }

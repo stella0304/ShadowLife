@@ -69,6 +69,31 @@
       <recent name="$PROJECT_DIR$/src" />
     </key>
   </component>
+  <component name="RunManager" selected="Application.ShadowLife">
+    <configuration name="ShadowLife" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ShadowLife" />
+      <module name="bagel" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Unnamed" type="Application" factoryName="Application" nameIsGenerated="true">
+      <module name="bagel" />
+      <option name="PROGRAM_PARAMETERS" value="500 100 res/worlds/harvest.csv" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.Unnamed" />
+      <item itemvalue="Application.ShadowLife" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.ShadowLife" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -90,8 +115,13 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="184" y="112" width="1071" height="724" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1602931622554">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="184" y="112" width="1071" height="724" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1440.900@0.0.1440.900" timestamp="1602931622554" />
     <state x="533" y="173" key="#com.intellij.ide.util.MemberChooser" timestamp="1602676099976">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
@@ -100,5 +130,45 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="458" y="204" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1440.900@0.0.1440.900" timestamp="1602642856703" />
+    <state width="1398" height="304" key="GridCell.Tab.0.bottom" timestamp="1602931816639">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="304" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1602931816639" />
+    <state width="1398" height="304" key="GridCell.Tab.0.center" timestamp="1602931816638">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="304" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1602931816638" />
+    <state width="1398" height="304" key="GridCell.Tab.0.left" timestamp="1602931816637">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="304" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1602931816637" />
+    <state width="1398" height="304" key="GridCell.Tab.0.right" timestamp="1602931816638">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="304" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1602931816638" />
+    <state width="1398" height="304" key="GridCell.Tab.1.bottom" timestamp="1602931816643">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="304" key="GridCell.Tab.1.bottom/0.0.1440.900@0.0.1440.900" timestamp="1602931816643" />
+    <state width="1398" height="304" key="GridCell.Tab.1.center" timestamp="1602931816641">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="304" key="GridCell.Tab.1.center/0.0.1440.900@0.0.1440.900" timestamp="1602931816641" />
+    <state width="1398" height="304" key="GridCell.Tab.1.left" timestamp="1602931816640">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="304" key="GridCell.Tab.1.left/0.0.1440.900@0.0.1440.900" timestamp="1602931816640" />
+    <state width="1398" height="304" key="GridCell.Tab.1.right" timestamp="1602931816642">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="304" key="GridCell.Tab.1.right/0.0.1440.900@0.0.1440.900" timestamp="1602931816642" />
+    <state x="427" y="39" width="586" height="822" key="find.popup" timestamp="1602931515487">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="427" y="39" width="586" height="822" key="find.popup/0.0.1440.900@0.0.1440.900" timestamp="1602931515487" />
+    <state x="385" y="196" width="670" height="676" key="search.everywhere.popup" timestamp="1602913330010">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="385" y="196" width="670" height="676" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1602913330010" />
   </component>
 </project>

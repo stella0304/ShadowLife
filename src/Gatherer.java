@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Gatherer extends Carrier{
     private static final String IMAGE_LOCATION = "res/images/gatherer.png";
@@ -37,6 +38,7 @@ public class Gatherer extends Carrier{
             setCarrying(false);
             oneStock.addFruit();
         }
+        rotate180();
     }
 
     public void atHoard(FruitStock oneHoard) {
@@ -45,6 +47,17 @@ public class Gatherer extends Carrier{
 
     public void atStockPile(FruitStock oneStockPile) {
         atFruitStock(oneStockPile);
+    }
+
+    public void checkForNonMoving(HashMap<String, Actor> nonMovingActors, ArrayList<Actor> actorsToAdd, ArrayList<Actor> actorsToDelete) {
+        String key = getxCoord() + "," + getyCoord();
+        Actor onTile = nonMovingActors.get(key);
+
+        if (onTile == null) {
+            return;
+        } else {
+            super.atActor(onTile, actorsToAdd, actorsToDelete);
+        }
     }
 
 }

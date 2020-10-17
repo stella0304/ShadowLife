@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Thief extends Carrier {
     private static final String IMAGE_LOCATION = "res/images/thief.png";
@@ -69,12 +70,29 @@ public class Thief extends Carrier {
     }
 
     public void onGatherer() {
+        rotate90AntiClockwise();
+    }
+
+    public void checkForNonMoving(HashMap<String, Actor> nonMovingActors, ArrayList<Actor> actorsToAdd, ArrayList<Actor> actorsToDelete) {
+        String key = getxCoord() + "," + getyCoord();
+        Actor onTile = nonMovingActors.get(key);
+        if (onTile == null) {
+            return;
+        } else if (onTile.getActorType().equals("Pad"))  {
+            // check if thief is on pad
+            this.atPad();
+        } else {
+            super.atActor(onTile, actorsToAdd, actorsToDelete);
+        }
 
     }
 
-    private void rotate90Clockwise() {
-        // rotate 90 degrees clockwise
-        int angleChange = -90;
-        changeAngle(angleChange);
+    public void checkForGatherer(HashMap<String, Gatherer> gatherersMap) {
+        String key = getxCoord() + "," + getyCoord();
+        Gatherer onTile = gatherersMap.get(key);
+        if (onTile != null) {
+            onGatherer();
+        }
     }
+
 }
