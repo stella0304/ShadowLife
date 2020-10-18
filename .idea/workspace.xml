@@ -22,25 +22,32 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c4c52414-c65b-4045-a862-3973f8d013d3" name="Default Changelist" comment="">
+    <list default="true" id="6b652d54-0785-4be9-8094-faa2e9276e93" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/args.txt" beforeDir="false" afterPath="$PROJECT_DIR$/args.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Actor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Actor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Carrier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Carrier.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/FruitStock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FruitStock.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Gatherer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Gatherer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ShadowLife.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ShadowLife.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Thief.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Thief.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Tree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tree.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Actor.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Actor.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Carrier$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Carrier$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Carrier.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Carrier.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Gatherer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Gatherer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ShadowLife.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ShadowLife.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Thief.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Thief.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Interface" />
-        <option value="Class" />
-      </list>
-    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -52,7 +59,7 @@
       </MavenGeneralSettings>
     </option>
   </component>
-  <component name="ProjectId" id="1iDWUQgI1OaYSRGITxPKm8inVez" />
+  <component name="ProjectId" id="1j0M5SQ8iA283hUiRaKg7NLlpAQ" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="1" id="Add" />
   </component>
@@ -62,32 +69,16 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
   </component>
-  <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src" />
-    </key>
-  </component>
-  <component name="RunManager" selected="Application.ShadowLife">
+  <component name="RunManager">
     <configuration name="ShadowLife" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ShadowLife" />
-      <module name="bagel" />
+      <module name="yunzhil1-project-2" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Unnamed" type="Application" factoryName="Application" nameIsGenerated="true">
-      <module name="bagel" />
-      <option name="PROGRAM_PARAMETERS" value="500 100 res/worlds/harvest.csv" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <list>
-      <item itemvalue="Application.Unnamed" />
-      <item itemvalue="Application.ShadowLife" />
-    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.ShadowLife" />
@@ -97,11 +88,11 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="c4c52414-c65b-4045-a862-3973f8d013d3" name="Default Changelist" comment="" />
-      <created>1601442659067</created>
+      <changelist id="6b652d54-0785-4be9-8094-faa2e9276e93" name="Default Changelist" comment="" />
+      <created>1602936372226</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1601442659067</updated>
+      <updated>1602936372226</updated>
     </task>
     <servers />
   </component>
@@ -118,57 +109,41 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="184" y="112" width="1071" height="724" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1602931622554">
+    <state x="533" y="158" key="#com.intellij.ide.util.MemberChooser" timestamp="1602996170537">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="184" y="112" width="1071" height="724" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1440.900@0.0.1440.900" timestamp="1602931622554" />
-    <state x="533" y="173" key="#com.intellij.ide.util.MemberChooser" timestamp="1602676099976">
+    <state x="533" y="158" key="#com.intellij.ide.util.MemberChooser/0.0.1440.900@0.0.1440.900" timestamp="1602996170537" />
+    <state width="1398" height="245" key="GridCell.Tab.0.bottom" timestamp="1603000589257">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="533" y="173" key="#com.intellij.ide.util.MemberChooser/0.0.1440.900@0.0.1440.900" timestamp="1602676099976" />
-    <state x="458" y="204" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1602642856703">
+    <state width="1398" height="245" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1603000589257" />
+    <state width="1398" height="245" key="GridCell.Tab.0.center" timestamp="1603000589255">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="458" y="204" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1440.900@0.0.1440.900" timestamp="1602642856703" />
-    <state width="1398" height="304" key="GridCell.Tab.0.bottom" timestamp="1602931816639">
+    <state width="1398" height="245" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1603000589255" />
+    <state width="1398" height="245" key="GridCell.Tab.0.left" timestamp="1603000589254">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="304" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1602931816639" />
-    <state width="1398" height="304" key="GridCell.Tab.0.center" timestamp="1602931816638">
+    <state width="1398" height="245" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1603000589254" />
+    <state width="1398" height="245" key="GridCell.Tab.0.right" timestamp="1603000589256">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="304" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1602931816638" />
-    <state width="1398" height="304" key="GridCell.Tab.0.left" timestamp="1602931816637">
+    <state width="1398" height="245" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1603000589256" />
+    <state width="1398" height="304" key="GridCell.Tab.1.bottom" timestamp="1602999053896">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="304" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1602931816637" />
-    <state width="1398" height="304" key="GridCell.Tab.0.right" timestamp="1602931816638">
+    <state width="1398" height="304" key="GridCell.Tab.1.bottom/0.0.1440.900@0.0.1440.900" timestamp="1602999053896" />
+    <state width="1398" height="304" key="GridCell.Tab.1.center" timestamp="1602999053894">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="304" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1602931816638" />
-    <state width="1398" height="304" key="GridCell.Tab.1.bottom" timestamp="1602931816643">
+    <state width="1398" height="304" key="GridCell.Tab.1.center/0.0.1440.900@0.0.1440.900" timestamp="1602999053894" />
+    <state width="1398" height="304" key="GridCell.Tab.1.left" timestamp="1602999053893">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="304" key="GridCell.Tab.1.bottom/0.0.1440.900@0.0.1440.900" timestamp="1602931816643" />
-    <state width="1398" height="304" key="GridCell.Tab.1.center" timestamp="1602931816641">
+    <state width="1398" height="304" key="GridCell.Tab.1.left/0.0.1440.900@0.0.1440.900" timestamp="1602999053893" />
+    <state width="1398" height="304" key="GridCell.Tab.1.right" timestamp="1602999053895">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="304" key="GridCell.Tab.1.center/0.0.1440.900@0.0.1440.900" timestamp="1602931816641" />
-    <state width="1398" height="304" key="GridCell.Tab.1.left" timestamp="1602931816640">
-      <screen x="0" y="0" width="1440" height="900" />
-    </state>
-    <state width="1398" height="304" key="GridCell.Tab.1.left/0.0.1440.900@0.0.1440.900" timestamp="1602931816640" />
-    <state width="1398" height="304" key="GridCell.Tab.1.right" timestamp="1602931816642">
-      <screen x="0" y="0" width="1440" height="900" />
-    </state>
-    <state width="1398" height="304" key="GridCell.Tab.1.right/0.0.1440.900@0.0.1440.900" timestamp="1602931816642" />
-    <state x="427" y="39" width="586" height="822" key="find.popup" timestamp="1602931515487">
-      <screen x="0" y="0" width="1440" height="900" />
-    </state>
-    <state x="427" y="39" width="586" height="822" key="find.popup/0.0.1440.900@0.0.1440.900" timestamp="1602931515487" />
-    <state x="385" y="196" width="670" height="676" key="search.everywhere.popup" timestamp="1602913330010">
-      <screen x="0" y="0" width="1440" height="900" />
-    </state>
-    <state x="385" y="196" width="670" height="676" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1602913330010" />
+    <state width="1398" height="304" key="GridCell.Tab.1.right/0.0.1440.900@0.0.1440.900" timestamp="1602999053895" />
   </component>
 </project>

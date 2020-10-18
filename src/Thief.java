@@ -4,7 +4,7 @@ import java.util.HashMap;
 public class Thief extends Carrier {
     private static final String IMAGE_LOCATION = "res/images/thief.png";
     private static final String TYPE = "Thief";
-    private static final int DEFAULT_DIRECTION = 90;
+    private static final int DEFAULT_DIRECTION = 270;
     // directions: 0 = left, 90 = up, 180 = right, 270 = down, etc
 
     private boolean isConsuming = false;
@@ -15,6 +15,14 @@ public class Thief extends Carrier {
 
     public Thief(int xCoord, int yCoord, int direction) {
         super(xCoord, yCoord, IMAGE_LOCATION, TYPE, direction);
+    }
+
+    public void atTree(Tree oneTree) {
+        carrierAtTree(oneTree);
+    }
+
+    public void atGoldenTree() {
+        carrierAtGoldenTree();
     }
 
     public void atMitosisPool(ArrayList<Actor> carriersToAdd, ArrayList<Actor> carriersToDelete) {
@@ -53,11 +61,13 @@ public class Thief extends Carrier {
     }
 
     public void atStockPile(FruitStock oneStockpile) {
+        //System.out.println("Stockpile!!");
         if (!isCarrying()) {
+            //System.out.println("not carrying!!");
             if (oneStockpile.takeFruit()) {
+                //System.out.println("takin fruit!!");
                 setCarrying(true);
                 isConsuming = false;
-                oneStockpile.takeFruit();
                 rotate90Clockwise();
             }
         } else {
@@ -73,7 +83,9 @@ public class Thief extends Carrier {
         rotate90AntiClockwise();
     }
 
-    public void checkForNonMoving(HashMap<String, Actor> nonMovingActors, ArrayList<Actor> actorsToAdd, ArrayList<Actor> actorsToDelete) {
+    /*public void checkForNonMoving(HashMap<String, ArrayList<Actor>> nonMovingActors,
+                                  HashMap<String, Gatherer> gathererMap, ArrayList<Actor> actorsToAdd,
+                                  ArrayList<Actor> actorsToDelete) {
         String key = getxCoord() + "," + getyCoord();
         Actor onTile = nonMovingActors.get(key);
         if (onTile == null) {
@@ -85,7 +97,7 @@ public class Thief extends Carrier {
             super.atActor(onTile, actorsToAdd, actorsToDelete);
         }
 
-    }
+    }*/
 
     public void checkForGatherer(HashMap<String, Gatherer> gatherersMap) {
         String key = getxCoord() + "," + getyCoord();

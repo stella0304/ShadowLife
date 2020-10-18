@@ -18,7 +18,7 @@ public class ShadowLife extends AbstractGame{
     private ArrayList<Thief> thieves;
     private ArrayList<FruitStock> fruitstocks;
     private HashMap<String, Gatherer> gatherersMap;
-    private HashMap<String, Actor> nonMovingActors;
+    private HashMap<String, ArrayList<Actor>> nonMovingActors;
     private ArrayList<ContentDrawable> drawables;
     private Image background;
 
@@ -40,7 +40,7 @@ public class ShadowLife extends AbstractGame{
         String[] macArgs = argsFromFile();
 
         if (macArgs == null || macArgs.length!=3) {
-            System.out.println("Invalid arguments.");
+            System.out.println("usage: ShadowLife <tick rate> <max ticks> <world file>");
             System.exit(-1);
         }
 
@@ -64,13 +64,12 @@ public class ShadowLife extends AbstractGame{
     @Override
     protected void update(Input input) {
 
-        // check for tick
+        // check for tick, move accordingly
         int currTime = (int) System.currentTimeMillis();
         if (currTime - prevTick >= oneTick) {
 
             boolean stillActive = false;
             prevTick = currTime;
-            numTicks++;
 
             ArrayList<Actor> gatherersToAdd = new ArrayList<>();
             ArrayList<Actor> gatherersToDelete = new ArrayList<>();
@@ -82,7 +81,7 @@ public class ShadowLife extends AbstractGame{
                 if (g.isActive()) {
                     stillActive = true;
                     g.move();
-                    g.checkForNonMoving(nonMovingActors, gatherersToAdd, gatherersToDelete);
+                    g.checkForNonMoving(nonMovingActors, gatherersMap, gatherersToAdd, gatherersToDelete);
                 }
             }
 
@@ -92,11 +91,6 @@ public class ShadowLife extends AbstractGame{
             }
             for (Actor a : gatherersToDelete) {
                 gatherers.remove((Gatherer) a);
-            }
-
-            // draw gatherers
-            for (Gatherer g : gatherers) {
-                g.displayImage();
             }
 
             // redo gatherers map according to their new positions
@@ -111,8 +105,8 @@ public class ShadowLife extends AbstractGame{
                 if (t.isActive()) {
                     stillActive = true;
                     t.move();
-                    t.checkForNonMoving(nonMovingActors, thievesToAdd, thievesToDelete);
-                    t.checkForGatherer(gatherersMap);
+                    t.checkForNonMoving(nonMovingActors, gatherersMap, thievesToAdd, thievesToDelete);
+                    //t.checkForGatherer(gatherersMap);
                 }
             }
 
@@ -124,26 +118,39 @@ public class ShadowLife extends AbstractGame{
                 thieves.remove((Thief) a);
             }
 
-            // draw thieves
-            for (Thief t : thieves) {
-                t.displayImage();
-            }
-
-            // draw all non moving actors' images
-            for (String key : nonMovingActors.keySet()) {
-                Actor oneActor = nonMovingActors.get(key);
-                oneActor.displayImage();
-            }
-
-            // draw the contents of trees, stockpiles and hoards
-            for (ContentDrawable c : drawables) {
-                c.drawContent();
-            }
-
-            // if all thieves and gatherers are inactive
+            // if all thieves and gatherers are inactive, end simulation
             if (!stillActive) {
                 endGame();
             }
+
+            numTicks++;
+        }
+
+        // draw everything
+
+        // draw background
+        background.draw(WIDTH/2, HEIGHT/2);
+
+        // draw all non moving actors' images
+        for (String key : nonMovingActors.keySet()) {
+            for (Actor a : nonMovingActors.get(key)) {
+                a.displayImage();
+            }
+        }
+
+        // draw the contents of trees, stockpiles and hoards
+        for (ContentDrawable c : drawables) {
+            c.drawContent();
+        }
+
+        // draw gatherers
+        for (Gatherer g : gatherers) {
+            g.displayImage();
+        }
+
+        // draw thieves
+        for (Thief t : thieves) {
+            t.displayImage();
         }
 
         // check for naxNumTick
@@ -161,6 +168,7 @@ public class ShadowLife extends AbstractGame{
         gatherers = new ArrayList<>();
         thieves = new ArrayList<>();
         fruitstocks = new ArrayList<>();
+        drawables = new ArrayList<>();
         //gatherersMap = new HashMap<>();
         nonMovingActors = new HashMap<>();
 
@@ -168,7 +176,7 @@ public class ShadowLife extends AbstractGame{
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
             //read cvs
             String textRead;
-            int lineNum = 1;
+            int lineNum = 0;
             while ((textRead = br.readLine()) != null) {
                 lineNum++;
                 String[] splitText = textRead.split(",");
@@ -182,62 +190,73 @@ public class ShadowLife extends AbstractGame{
                 switch (splitText[0]) {
                     case "Tree":
                         oneActor = new Tree(Integer.parseInt(splitText[1]), Integer.parseInt(splitText[2]));
-                        nonMovingActors.put(hashKey, oneActor);
+                        checkArrayExists(hashKey);
+                        nonMovingActors.get(hashKey).add(oneActor);
                         drawables.add((Tree) oneActor);
                         break;
                     case "GoldenTree":
                         oneActor = new StationaryActor(Integer.parseInt(splitText[1]),
                                 Integer.parseInt(splitText[2]), "GoldenTree");
-                        nonMovingActors.put(hashKey, oneActor);
+                        checkArrayExists(hashKey);
+                        nonMovingActors.get(hashKey).add(oneActor);
                         break;
                     case "Stockpile":
                         oneActor = new FruitStock(Integer.parseInt(splitText[1]),
                                 Integer.parseInt(splitText[2]), "Stockpile");
                         fruitstocks.add((FruitStock) oneActor);
-                        nonMovingActors.put(hashKey, oneActor);
+                        checkArrayExists(hashKey);
+                        nonMovingActors.get(hashKey).add(oneActor);
                         drawables.add((FruitStock) oneActor);
                         break;
                     case "Hoard":
                         oneActor = new FruitStock(Integer.parseInt(splitText[1]),
                                 Integer.parseInt(splitText[2]), "Hoard");
                         fruitstocks.add((FruitStock) oneActor);
-                        nonMovingActors.put(hashKey, oneActor);
+                        checkArrayExists(hashKey);
+                        nonMovingActors.get(hashKey).add(oneActor);
                         drawables.add((FruitStock) oneActor);
                         break;
                     case "Pad":
                         oneActor = new StationaryActor(Integer.parseInt(splitText[1]),
                                 Integer.parseInt(splitText[2]), "Pad");
-                        nonMovingActors.put(hashKey, oneActor);
+                        checkArrayExists(hashKey);
+                        nonMovingActors.get(hashKey).add(oneActor);
                         break;
                     case "Fence":
                         oneActor = new StationaryActor(Integer.parseInt(splitText[1]),
                                 Integer.parseInt(splitText[2]), "Fence");
-                        nonMovingActors.put(hashKey, oneActor);
+                        checkArrayExists(hashKey);
+                        nonMovingActors.get(hashKey).add(oneActor);
                         break;
                     case "SignUp":
                         oneActor = new StationaryActor(Integer.parseInt(splitText[1]),
                                 Integer.parseInt(splitText[2]), "SignUp");
-                        nonMovingActors.put(hashKey, oneActor);
+                        checkArrayExists(hashKey);
+                        nonMovingActors.get(hashKey).add(oneActor);
                         break;
                     case "SignDown":
                         oneActor = new StationaryActor(Integer.parseInt(splitText[1]),
                                 Integer.parseInt(splitText[2]), "SignDown");
-                        nonMovingActors.put(hashKey, oneActor);
+                        checkArrayExists(hashKey);
+                        nonMovingActors.get(hashKey).add(oneActor);
                         break;
                     case "SignLeft":
                         oneActor = new StationaryActor(Integer.parseInt(splitText[1]),
                                 Integer.parseInt(splitText[2]), "SignLeft");
-                        nonMovingActors.put(hashKey, oneActor);
+                        checkArrayExists(hashKey);
+                        nonMovingActors.get(hashKey).add(oneActor);
                         break;
                     case "SignRight":
                         oneActor = new StationaryActor(Integer.parseInt(splitText[1]),
                                 Integer.parseInt(splitText[2]), "SignRight");
-                        nonMovingActors.put(hashKey, oneActor);
+                        checkArrayExists(hashKey);
+                        nonMovingActors.get(hashKey).add(oneActor);
                         break;
-                    case "MitosisPool":
+                    case "Pool":
                         oneActor = new StationaryActor(Integer.parseInt(splitText[1]),
                                 Integer.parseInt(splitText[2]), "MitosisPool");
-                        nonMovingActors.put(hashKey, oneActor);
+                        checkArrayExists(hashKey);
+                        nonMovingActors.get(hashKey).add(oneActor);
                         break;
                     case "Gatherer":
                         oneActor = new Gatherer(Integer.parseInt(splitText[1]), Integer.parseInt(splitText[2]));
@@ -253,7 +272,7 @@ public class ShadowLife extends AbstractGame{
                         System.exit(-1);
                 }
             }
-        } catch (Exception e) {
+        } catch (IOException e) {
             e.printStackTrace();
             System.out.println("error: file \"" + file + "\" not found");
             System.exit(-1);
@@ -277,7 +296,7 @@ public class ShadowLife extends AbstractGame{
     }
 
     private void endGame() {
-        System.out.println(numTicks + "Ticks");
+        System.out.println(numTicks + " Ticks");
         for (FruitStock f : fruitstocks) {
             System.out.println(f.getNumFruit());
         }
@@ -287,9 +306,17 @@ public class ShadowLife extends AbstractGame{
     private static String[] argsFromFile() {
         try {
             return Files.readString(Path.of("args.txt"), Charset.defaultCharset()) .split(" ");
-        } catch (IOException e) { e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
         return null;
+    }
+
+    private void checkArrayExists(String key) {
+        if (!nonMovingActors.containsKey(key)) {
+            ArrayList<Actor> newActorList = new ArrayList<>();
+            nonMovingActors.put(key, newActorList);
+        }
     }
 }
 

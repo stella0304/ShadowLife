@@ -4,8 +4,8 @@ import java.util.HashMap;
 public class Gatherer extends Carrier{
     private static final String IMAGE_LOCATION = "res/images/gatherer.png";
     private static final String TYPE = "Gatherer";
-    private static final int DEFAULT_DIRECTION = 0;
-    // directions: 0 = left, 90 = up, 180 = right, 270 = down, etc
+    private static final int DEFAULT_DIRECTION = 180;
+    // directions: 0 = right, 90 = down, 180 = left, 270 = up, etc
 
     public Gatherer(int xCoord, int yCoord) {
         super(xCoord, yCoord, IMAGE_LOCATION, TYPE, DEFAULT_DIRECTION);
@@ -15,10 +15,22 @@ public class Gatherer extends Carrier{
         super(xCoord, yCoord, IMAGE_LOCATION, TYPE, direction);
     }
 
+    public void atTree(Tree oneTree) {
+        if (carrierAtTree(oneTree)) {
+            rotate180();
+        }
+    }
+
+    public void atGoldenTree() {
+        if(carrierAtGoldenTree()) {
+            rotate180();
+        }
+    }
+
     public void atMitosisPool(ArrayList<Actor> carriersToAdd, ArrayList<Actor> carriersToDelete) {
 
         // make and move new gatherers
-        int clockwise90 = -90, anticlockwise90 = 90;
+        int clockwise90 = 90, anticlockwise90 = -90;
 
         Gatherer newGatherer1 = new Gatherer(getxCoord(), getyCoord(), getDirection() + anticlockwise90);
         newGatherer1.move();
@@ -49,15 +61,31 @@ public class Gatherer extends Carrier{
         atFruitStock(oneStockPile);
     }
 
-    public void checkForNonMoving(HashMap<String, Actor> nonMovingActors, ArrayList<Actor> actorsToAdd, ArrayList<Actor> actorsToDelete) {
-        String key = getxCoord() + "," + getyCoord();
-        Actor onTile = nonMovingActors.get(key);
+    public void atPad() { /* do nothing*/ }
 
-        if (onTile == null) {
+    public void onGatherer() { /* do nothing */ }
+
+    /*public void checkForNonMoving(HashMap<String, ArrayList<Actor>> nonMovingActors,
+                                  HashMap<String, Gatherer> gathererMap, ArrayList<Actor> actorsToAdd,
+                                  ArrayList<Actor> actorsToDelete) {
+        String key = getxCoord() + "," + getyCoord();
+        ArrayList<Actor> onTile = nonMovingActors.get(key);
+        Actor interestedActor;
+
+        if (onTile == null || onTile.size() < 1) {
             return;
-        } else {
-            super.atActor(onTile, actorsToAdd, actorsToDelete);
         }
-    }
+
+        if ((interestedActor=findActorWithType(onTile, "Fence")) != null) {
+            atFence();
+        }
+        if ((interestedActor=findActorWithType(onTile, "MitosisPool")) != null) {
+            atMitosisPool();
+        }
+        if ((interestedActor=findActorWithType(onTile, "SignLeft")) != null) {
+            atSign("LEFT");
+        }
+
+    }*/
 
 }

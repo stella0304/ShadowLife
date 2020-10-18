@@ -8,6 +8,10 @@ public class Tree extends Actor implements ContentDrawable{
         super(xCoord, yCoord, IMAGE_LOCATION, TYPE);
     }
 
+    public int getNumFruit() {
+        return numFruit;
+    }
+
     public boolean takeFruit() {
         if (numFruit <= 0) {
             return false;

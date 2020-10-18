@@ -23,7 +23,7 @@ public class FruitStock extends Actor implements ContentDrawable{
     }
 
     public boolean takeFruit() {
-        if (numFruit <= 1) {
+        if (numFruit <= 0) {
             return false;
         } else {
             numFruit--;

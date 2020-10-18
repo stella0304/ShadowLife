@@ -1,1 +1,1 @@
-500 100 res/worlds/harvest.csv
+50 1000 res/worlds/harvest.csv

@@ -1,4 +1,3 @@
-import java.util.Objects;
 import bagel.*;
 
 public abstract class Actor {
