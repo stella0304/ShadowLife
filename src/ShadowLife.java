@@ -1,5 +1,4 @@
 import bagel.*;
-
 import java.nio.file.*;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
@@ -22,11 +21,11 @@ public class ShadowLife extends AbstractGame{
     private HashMap<String, Gatherer> gatherersMap;
     private HashMap<String, ArrayList<Actor>> nonMovingActors;
     private ArrayList<ContentDrawable> drawables;
-    private Image background;
+    private final Image background;
 
-    private int oneTick;
+    private final int oneTick;
     private int numTicks = 0;
-    private int maxNumTicks;
+    private final int maxNumTicks;
     private int prevTick = (int) System.currentTimeMillis();
 
     /**
@@ -294,7 +293,7 @@ public class ShadowLife extends AbstractGame{
         try {
             x = Integer.parseInt(splitText[1]);
             y = Integer.parseInt(splitText[2]);
-        } catch (Exception e) {
+        } catch (NumberFormatException e) {
             System.out.println("error: in file \"" + file + "\" at line" + lineNum);
             System.exit(-1);
         }
@@ -330,4 +329,3 @@ public class ShadowLife extends AbstractGame{
         }
     }
 }
-

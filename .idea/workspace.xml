@@ -23,18 +23,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6b652d54-0785-4be9-8094-faa2e9276e93" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/args.txt" beforeDir="false" afterPath="$PROJECT_DIR$/args.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Actor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Actor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Carrier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Carrier.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ContentDrawable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ContentDrawable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FruitStock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FruitStock.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Gatherer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Gatherer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/args.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/worlds/test1.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/worlds/test2.csv" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ShadowLife.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ShadowLife.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/StationaryActor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/StationaryActor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Thief.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Thief.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Tree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tree.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ShadowLife.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ShadowLife.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
