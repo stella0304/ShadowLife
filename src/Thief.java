@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class Thief extends Carrier {
     private static final String IMAGE_LOCATION = "res/images/thief.png";
@@ -9,23 +8,35 @@ public class Thief extends Carrier {
 
     private boolean isConsuming = false;
 
+    /**
+     * Makes a new Thief using the default direction
+     * @param xCoord x location of the Thief
+     * @param yCoord y location of the Thief
+     */
     public Thief(int xCoord, int yCoord) {
         super(xCoord, yCoord, IMAGE_LOCATION, TYPE, DEFAULT_DIRECTION);
     }
+
+    /**
+     * Make a new Thief without using the default direction
+     * @param xCoord x location of the Thief
+     * @param yCoord y location of the Thief
+     * @param direction starting direction of the Thief
+     */
 
     public Thief(int xCoord, int yCoord, int direction) {
         super(xCoord, yCoord, IMAGE_LOCATION, TYPE, direction);
     }
 
-    public void atTree(Tree oneTree) {
+    protected void atTree(Tree oneTree) {
         carrierAtTree(oneTree);
     }
 
-    public void atGoldenTree() {
+    protected void atGoldenTree() {
         carrierAtGoldenTree();
     }
 
-    public void atMitosisPool(ArrayList<Actor> carriersToAdd, ArrayList<Actor> carriersToDelete) {
+    protected void atMitosisPool(ArrayList<Actor> carriersToAdd, ArrayList<Actor> carriersToDelete) {
 
         // make and move new thieves
         int clockwise90 = -90, anticlockwise90 = 90;
@@ -34,8 +45,6 @@ public class Thief extends Carrier {
         newThief1.move();
         Thief newThief2 = new Thief(getxCoord(), getyCoord(), getDirection() + clockwise90);
         newThief2.move();
-        //Actor newActor1 = newThief1;
-        //Actor newActor2 = newThief2;
 
         // add to list of actors to add and delete
         carriersToAdd.add(newThief1);
@@ -43,7 +52,7 @@ public class Thief extends Carrier {
         carriersToDelete.add(this);
     }
 
-    public void atHoard(FruitStock oneHoard) {
+    protected void atHoard(FruitStock oneHoard) {
         if (isConsuming) {
             isConsuming = false;
             if (!isCarrying()) {
@@ -60,12 +69,9 @@ public class Thief extends Carrier {
         }
     }
 
-    public void atStockPile(FruitStock oneStockpile) {
-        //System.out.println("Stockpile!!");
+    protected void atStockPile(FruitStock oneStockpile) {
         if (!isCarrying()) {
-            //System.out.println("not carrying!!");
             if (oneStockpile.takeFruit()) {
-                //System.out.println("takin fruit!!");
                 setCarrying(true);
                 isConsuming = false;
                 rotate90Clockwise();
@@ -75,36 +81,12 @@ public class Thief extends Carrier {
         }
     }
 
-    public void atPad() {
+    protected void atPad() {
         isConsuming = true;
     }
 
-    public void onGatherer() {
+    protected void onGatherer() {
         rotate90AntiClockwise();
-    }
-
-    /*public void checkForNonMoving(HashMap<String, ArrayList<Actor>> nonMovingActors,
-                                  HashMap<String, Gatherer> gathererMap, ArrayList<Actor> actorsToAdd,
-                                  ArrayList<Actor> actorsToDelete) {
-        String key = getxCoord() + "," + getyCoord();
-        Actor onTile = nonMovingActors.get(key);
-        if (onTile == null) {
-            return;
-        } else if (onTile.getActorType().equals("Pad"))  {
-            // check if thief is on pad
-            this.atPad();
-        } else {
-            super.atActor(onTile, actorsToAdd, actorsToDelete);
-        }
-
-    }*/
-
-    public void checkForGatherer(HashMap<String, Gatherer> gatherersMap) {
-        String key = getxCoord() + "," + getyCoord();
-        Gatherer onTile = gatherersMap.get(key);
-        if (onTile != null) {
-            onGatherer();
-        }
     }
 
 }

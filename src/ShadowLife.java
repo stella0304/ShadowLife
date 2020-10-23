@@ -8,7 +8,9 @@ import java.io.FileReader;
 import java.io.BufferedReader;
 import java.io.IOException;
 
-
+/**
+ * Class for a ShadowLife simulation. Runs the simulation.
+ */
 public class ShadowLife extends AbstractGame{
 
     private final static int WIDTH = 960;
@@ -27,6 +29,12 @@ public class ShadowLife extends AbstractGame{
     private int maxNumTicks;
     private int prevTick = (int) System.currentTimeMillis();
 
+    /**
+     * Constructor of one ShadowLife simulation
+     * @param oneTick the length of one tick
+     * @param maxNumTicks the max number of ticks before the simulation times out
+     * @param fileLocation the location of the world file the simulation is built on top of
+     */
     public ShadowLife(int oneTick, int maxNumTicks, String fileLocation) {
         super(WIDTH, HEIGHT, "ShadowLife");
         this.oneTick = oneTick;
@@ -35,6 +43,9 @@ public class ShadowLife extends AbstractGame{
         readCsv(fileLocation);
     }
 
+    /**
+     * main method which constructs a ShadowLife simulation and runs it
+     */
     public static void main(String[] args) {
         // check if the inputs are valid - mac user
         String[] macArgs = argsFromFile();
@@ -169,7 +180,6 @@ public class ShadowLife extends AbstractGame{
         thieves = new ArrayList<>();
         fruitstocks = new ArrayList<>();
         drawables = new ArrayList<>();
-        //gatherersMap = new HashMap<>();
         nonMovingActors = new HashMap<>();
 
         // read csv and store info
@@ -304,6 +314,7 @@ public class ShadowLife extends AbstractGame{
     }
 
     private static String[] argsFromFile() {
+        // the following code was taken from the project spec of Project 2 of SWEN20003 at the University of Melbourne
         try {
             return Files.readString(Path.of("args.txt"), Charset.defaultCharset()) .split(" ");
         } catch (IOException e) {
