@@ -37,22 +37,6 @@ public class Gatherer extends Carrier{
         }
     }
 
-    protected void atMitosisPool(ArrayList<Actor> carriersToAdd, ArrayList<Actor> carriersToDelete) {
-
-        // make and move new gatherers
-        int clockwise90 = 90, anticlockwise90 = -90;
-
-        Gatherer newGatherer1 = new Gatherer(getxCoord(), getyCoord(), getDirection() + anticlockwise90);
-        newGatherer1.move();
-        Gatherer newGatherer2 = new Gatherer(getxCoord(), getyCoord(), getDirection() + clockwise90);
-        newGatherer2.move();
-
-        // add to list of actors to add and delete
-        carriersToAdd.add(newGatherer1);
-        carriersToAdd.add(newGatherer2);
-        carriersToDelete.add(this);
-    }
-
     private void atFruitStock(FruitStock oneStock) {
         if (isCarrying()) {
             setCarrying(false);
@@ -72,5 +56,9 @@ public class Gatherer extends Carrier{
     protected void atPad() { /* do nothing*/ }
 
     protected void onGatherer() { /* do nothing */ }
+
+    protected Carrier createCarrier(int xCoord, int yCoord, int direction) {
+        return new Gatherer(xCoord, yCoord, direction);
+    }
 
 }

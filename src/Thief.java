@@ -36,22 +36,6 @@ public class Thief extends Carrier {
         carrierAtGoldenTree();
     }
 
-    protected void atMitosisPool(ArrayList<Actor> carriersToAdd, ArrayList<Actor> carriersToDelete) {
-
-        // make and move new thieves
-        int clockwise90 = -90, anticlockwise90 = 90;
-
-        Thief newThief1 = new Thief(getxCoord(), getyCoord(), getDirection() + anticlockwise90);
-        newThief1.move();
-        Thief newThief2 = new Thief(getxCoord(), getyCoord(), getDirection() + clockwise90);
-        newThief2.move();
-
-        // add to list of actors to add and delete
-        carriersToAdd.add(newThief1);
-        carriersToAdd.add(newThief2);
-        carriersToDelete.add(this);
-    }
-
     protected void atHoard(FruitStock oneHoard) {
         if (isConsuming) {
             isConsuming = false;
@@ -87,6 +71,10 @@ public class Thief extends Carrier {
 
     protected void onGatherer() {
         rotate90AntiClockwise();
+    }
+
+    protected Carrier createCarrier(int xCoord, int yCoord, int direction) {
+        return new Thief(xCoord, yCoord, direction);
     }
 
 }

@@ -217,10 +217,28 @@ public abstract class Carrier extends Actor {
 
     }
 
+    protected void atMitosisPool(ArrayList<Actor> carriersToAdd, ArrayList<Actor> carriersToDelete) {
+
+        // make and move new gatherers
+        int clockwise90 = 90, anticlockwise90 = -90;
+
+        Carrier newGatherer1 = createCarrier(getxCoord(), getyCoord(), getDirection() + anticlockwise90);
+        newGatherer1.move();
+        Carrier newGatherer2 = createCarrier(getxCoord(), getyCoord(), getDirection() + clockwise90);
+        newGatherer2.move();
+
+        // add to list of actors to add and delete
+        carriersToAdd.add(newGatherer1);
+        carriersToAdd.add(newGatherer2);
+        carriersToDelete.add(this);
+    }
+
+
+
     // abstract methods
     protected abstract void atTree(Tree oneTree);
     protected abstract void atGoldenTree();
-    protected abstract void atMitosisPool(ArrayList<Actor> actorsToAdd, ArrayList<Actor> actorsToDelete);
+    protected abstract Carrier createCarrier(int xCoord, int yCoord, int direction);
     protected abstract void atHoard(FruitStock oneHoard);
     protected abstract void atStockPile(FruitStock oneStockPile);
     protected abstract void atPad();
