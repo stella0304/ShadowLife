@@ -73,6 +73,7 @@ public class ShadowLife extends AbstractGame{
 
     @Override
     protected void update(Input input) {
+        // testing testing
 
         // check for tick, move accordingly
         int currTime = (int) System.currentTimeMillis();
